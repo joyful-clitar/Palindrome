@@ -1,0 +1,42 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+// Функция для проверки, является ли слово палиндромом
+bool isPalindrome(const std::string& word) {
+    int length = word.length();
+
+    for (int i = 0; i < length / 2; ++i) {
+        if (word[i] != word[length - i - 1]) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+int main() {
+    std::cout << "Welcome to the Palindrome Checker!" << std::endl;
+    std::cout << "Enter words to check if they are palindromes (press Enter after each word):" << std::endl;
+
+    std::vector<std::string> words;
+    std::string word;
+
+    // Ввод слов до тех пор, пока пользователь не введет пустую строку
+    while (std::getline(std::cin, word) && !word.empty()) {
+        words.push_back(word);
+    }
+
+    std::cout << "Checking if the entered words are palindromes..." << std::endl;
+
+    // Проверка каждого слова и вывод результата
+    for (const std::string& word : words) {
+        if (isPalindrome(word)) {
+            std::cout << word << " is a palindrome!" << std::endl;
+        } else {
+            std::cout << word << " is not a palindrome." << std::endl;
+        }
+    }
+
+    return 0;
+}
